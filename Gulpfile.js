@@ -59,7 +59,7 @@ gulp.task('webpack:server', function(){
 
 gulp.task('browser-sync', ['nodemon-debug'], function() {
 	browserSync.init({
-		proxy: 'localhost:4000',
+		proxy: 'localhost:5000',
 		open: false,
 		port: 3003
 	});

@@ -7,7 +7,7 @@ Module.setEnv = function(environment) {
     Common config
    */
   Module.HOSTNAME = "0.0.0.0";
-  Module.PORT = normalizePort(process.env.PORT || "4000");
+  Module.PORT = normalizePort(process.env.PORT || "5000");
   Module.PUBLIC_PATH = "public";
   Module.VIEWS_ENGINE = "html";
   // Module.VIEWS_PATH = "server/views";
