@@ -1,0 +1,111 @@
+@import "../config.variables.css";
+@import "./modal.transition.css";
+
+.post-article :--heading {
+    color: color( var(--mainColor) blackness(+20%) );
+}
+@media (--mobile) {
+    .post-article :--heading {
+        margin-top: 0;
+    }
+}
+
+body, html {
+  font-family: "Helvetica Neue", "Helvetica", Arial, san-serif;
+  color: var(--textColor);
+}
+
+/*
+    sticky footer: using flex
+    https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
+*/
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+}
+
+/* end - sticky footer */
+
+h1 {
+  font-weight: 300;
+  transition: all 0.1s linear;
+}
+
+body.home main {
+  margin-top: 15%;
+}
+
+.hero-title {
+  font-weight: 500;
+  color: var(--textColor);
+  text-align: left;
+  letter-spacing: -1px;
+}
+
+.container {
+  max-width: 800px;
+/*  margin-left: 0;
+  margin-right: 0;*/
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+
+  border-top: 1px solid #f1f1f1;
+
+  & > .container {
+
+    & > ul {
+      margin: 0;
+      padding: 0;
+      margin-bottom: 15px;
+      float: left;
+    }
+
+    & > ul > li {
+      list-style: none;
+      display: inline-block;
+      margin: 0 15px;
+      width: 40px;
+      text-align: center;
+
+      a {
+        color: #6F6F6F;
+        font-weight: 500;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: none;
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+.copyright {
+  color: #aaa;
+  font-size: 12px;
+  float: right;
+
+  strong {
+    color: #444;
+    font-weight: normal;
+  }
+}

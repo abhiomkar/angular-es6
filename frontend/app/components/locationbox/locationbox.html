@@ -1,0 +1,24 @@
+<div class="locationbox-component" ng-clock>
+	<div class="container">
+		<div class="location-container">
+			<!-- Type Address -->
+			<div class="location-input-container col-md-12">
+				<i class="search-icon"></i>
+				<input autocomplete="false" aria-label="Search Box for Google Places" tabindex="-1" spellcheck="false" type="text" name="location-hint" class="location-hint" ng-model="locationHint" />
+				<input ng-change="autoSuggestAddress()" ng-model="locationInput" ng-keydown="handleKeyDown($event)" autocomplete="false" spellcheck="false" type="text" name="location" class="form-control location" placeholder="Where you want to go?" />
+
+				<a class="locate-me" ng-click="getLocation()">
+					<span class="locate-me-text" ng-class="{'progressing': locateMeProgressing}">{{locateMeText}}</span>
+					<i class="detect-location-icon"></i>
+				</a>
+
+				<div class="address-list" ng-class="{open: showAddressList}">
+					<ul>
+						<li ng-repeat="address in addressSuggestionList" ng-class="{active: $index === activeSuggestionIndex}">
+							<a ng-click="showMapModal({placeId: address.place_id})" ng-bind-html="address.description | boldMatchedText:locationInput | to_trusted"></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+</div>

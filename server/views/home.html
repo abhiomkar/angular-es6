@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block classes %}{{ classes }}{% endblock %}
+
+{% block banner_message %}
+	{% if bannerMessage %}
+		<div class="banner-message">
+			{{bannerMessage}}
+		</div>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="container page-content">
+    <!-- header -->
+    <div class="header">
+      <div>
+        <div class="pull-left">
+          <a href="/" class="logo">
+          </a>
+        </div>
+        <div class="pull-right nav">
+					<div class="get-app">
+					</div>
+        </div>
+	    </div>
+	  </div>
+
+	  <main>
+	  	<div class="container">
+		  	<h1 class="hero-title">Look Up Places</h1>
+	  	</div>
+			<locationbox></locationbox>
+		</main>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+:root {
+    --mainColor: #ffbbaaff;
+    --redColor: #c81b1c;
+    --textColor: #4d4d4d;
+    --alertRed: #dd4b39;
+    --orangeColor: #F38630;
+}
+
+@custom-media    --mobile (width <= 640px);
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;

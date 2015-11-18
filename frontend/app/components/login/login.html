@@ -1,0 +1,300 @@
+<div class="login-component">
+  <div ng-show="isLoggedIn">
+    <div class="loggedin-user-name"><a href="/my-account">{{userName}}</a></div>
+    <a class="btn-logout" ng-click="logOut()">Logout</a>
+  </div>
+
+  <div ng-hide="isLoggedIn">
+    <a ng-click="showSignin()" class="btn-login">Login</a>
+  </div>
+
+  <div class="modal fade zoom" role="dialog" aria-labelledby="signInModal" id="signInModal">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="gridSystemModalLabel">Login</h4>
+        </div>
+        <div class="modal-body" ng-style="{'height': modalBodyHeight}">
+          <div class="alert alert-warning" ng-show="errorMsg">{{errorMsg}}</div>
+          <form class="material" ng-submit="logIn()" name="login" novalidate>
+            <div class="form-panel first step-phonenumber">
+              <div class="group" ng-class="{'error': error.phonenumber, 'has-value': (login.phonenumber.$error.phonenumber || login.phonenumber.$valid)}">
+                <input ng-model="phonenumber" name="phonenumber" type="tel" required autofocus>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Phone Number</label>
+                <span class="error-msg">{{error.phonenumber}}</span>
+              </div>
+
+              <button type="submit" class="btn btn-default submit" ng-class="{'progressing disabled': progressing}">Next</button>
+
+              <div class="new-user">
+                <span>New user?</span> <a ng-click="showSignup()">Sign Up</a>
+              </div>
+            </div>
+
+            <div class="form-panel second step-password">
+              <div class="group has-value">
+                <input ng-model="phonenumber" type="text" required disabled="disabled" />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Phone Number</label>
+              </div>
+
+              <div class="group" ng-class="{'error': error.password}">
+                <input ng-model="password" name="password" type="password" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Password</label>
+                <span class="error-msg">{{error.password}}</span>
+              </div>
+
+              <div class="align-center">
+                <div class="forgot">
+                  <a ng-click="forgotPassword()">Forgot Password?</a>
+                </div>
+                <div class="go-back">
+                  <a ng-click="goBackSignin()">&larr; Go back</a>
+                </div>
+              </div>
+
+              <hr>
+              <button type="submit" class="btn btn-default submit" ng-class="{'progressing disabled': progressing}">Login</button>
+            </div>
+
+            <div class="form-panel third step-verify-otp">
+              <div class="inner-text">An OTP is sent to your mobile number.</div>
+
+              <div class="group has-value">
+                <input ng-model="phonenumber" type="text" required disabled="disabled" />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Phone Number</label>
+              </div>
+
+              <div class="group" ng-class="{'error': error.otp}">
+                <input ng-model="otp" name="otp" type="number" />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Enter OTP here</label>
+                <span class="error-msg">{{error.otp}}</span>
+              </div>
+
+              <div class="align-center" ng-show="showVerifyViaCall">
+                <a ng-click="verifyViaCall()">Verify via call</a>
+              </div>
+
+              <hr>
+
+              <button type="submit" class="btn btn-default submit" ng-class="{'progressing disabled': progressing}">Verify</button>
+            </div>
+
+            <div sytle="clear: both;"></div>
+          </form>
+          <div sytle="clear: both;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade zoom" role="dialog" aria-labelledby="signUpModal" id="signUpModal">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="gridSystemModalLabel">Sign Up</h4>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-warning" ng-show="errorMsg">{{errorMsg}}</div>
+          <form class="material" ng-submit="signUp()" name="signup" novalidate>
+            <div class="group" ng-class="{'error': error.fullname, 'has-value': fullname}">
+              <input ng-model="fullname" name="fullname" type="text" required />
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Full Name</label>
+              <span class="error-msg">{{error.fullname}}</span>
+            </div>
+
+            <div class="group" ng-class="{'error': error.email, 'has-value': (signup.email.$error.email || signup.email.$valid)}">
+              <input ng-model="email" name="email" type="email" required />
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Email Address</label>
+              <span class="error-msg">{{error.email}}</span>
+            </div>
+
+            <div class="group" ng-class="{'error': error.phonenumber, 'has-value': (signup.phonenumber.$error.phonenumber || signup.phonenumber.$valid)}">
+              <input ng-model="phonenumber" name="phonenumber" type="tel" required />
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Phone Number</label>
+              <span class="error-msg">{{error.phonenumber}}</span>
+            </div>
+
+            <div class="group" ng-class="{'error': error.password, 'has-value': password}">
+              <input ng-model="password" name="password" type="password" required />
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Password</label>
+              <span class="error-msg">{{error.password}}</span>
+            </div>
+
+            <div class="checkbox terms" ng-class="{'error': error.acceptTerms}">
+              <label>
+                <input ng-model="acceptTerms" type="checkbox"> I accept the <a href="/terms">Terms & Conditions</a>
+              </label>
+              <span class="error-msg">{{error.acceptTerms}}</span>
+            </div>
+
+            <div class="new-user">
+              <span>Existing user?</span>
+              <a ng-click="showSignin()">Login</a>
+            </div>
+
+            <hr>
+            <button type="submit" class="btn btn-default submit" ng-class="{'progressing disabled': progressing}">Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade zoom" role="dialog" aria-labelledby="createPassword" id="createPassword">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="gridSystemModalLabel">Create Password</h4>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-warning" ng-show="errorMsg">{{errorMsg}}</div>
+          <form class="material" name="createPassword" ng-submit="createp('Password Created.')" novalidate>
+            <div class="align-center">
+              <i class="success-icon"></i>
+              <div>Your number is verified.</div>
+              <div class="dim-text">Please set a new password for future login.</div>
+            </div>
+            <div class="group has-value">
+              <input ng-model="phonenumber" type="text" required disabled="disabled" />
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Phone Number</label>
+            </div>
+
+            <div class="group" ng-class="{'error': error.otp}">
+              <input ng-model="password" type="password" />
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Enter new password</label>
+              <span class="error-msg">{{error.password}}</span>
+            </div>
+
+            <hr>
+
+            <button type="submit" class="btn btn-default submit" ng-class="{'progressing disabled': progressing}">Save & SignIn</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade zoom" role="dialog" aria-labelledby="forgotPassword" id="forgotPassword">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="gridSystemModalLabel">Forgot password</h4>
+        </div>
+        <div class="modal-body">
+          <form class="material" name="forgotPassword" ng-submit="createp('Password Changed.')">
+            <div class="align-center">
+              <i class="success-icon"></i>
+              <div>Your number is verified.</div>
+              <div class="dim-text">Please enter a new password.</div>
+            </div>
+            <div class="group has-value">
+              <input ng-model="phonenumber" type="text" required disabled="disabled" />
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Phone Number</label>
+            </div>
+
+            <div class="group" ng-class="{'error': error.otp}">
+              <input ng-model="password" type="password" />
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Enter new password</label>
+              <span class="error-msg">{{error.password}}</span>
+            </div>
+
+            <hr>
+
+            <button type="submit" class="btn btn-default submit" ng-class="{'progressing disabled': progressing}">Change Password</button>          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade zoom" role="dialog" aria-labelledby="verification" id="verification">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="gridSystemModalLabel">Verification</h4>
+        </div>
+        <div class="modal-body">
+          <form class="material" name="verification" ng-submit="verifyOTP(verificationSuccessCallback)" novalidate>
+            <!-- TODO: Fix this overlapping issue -->
+            <div class="inner-text">An OTP is sent to your mobile number.</div>
+            <div class="group" ng-class="{'error': error.otp}">
+              <input ng-model="otp" type="number" required />
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Enter OTP here</label>
+              <span class="error-msg">{{error.otp}}</span>
+            </div>
+
+            <div class="align-center" ng-show="showVerifyViaCall">
+              <a ng-click="verifyViaCall(verificationSuccessCallback)">Verify via call</a>
+            </div>
+
+            <hr>
+
+            <button type="submit" class="btn btn-default submit" ng-class="{'progressing disabled': progressing}">Verify</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade zoom" role="dialog" aria-labelledby="verificationSuccessful" id="verificationSuccessful">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <i class="success-icon"></i>
+            <h3>{{verificationHeading}}</h3>
+            <div>{{verificationSubHeading}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade zoom" role="dialog" aria-labelledby="verifyViaCall" id="verifyViaCall">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="align-center">
+            <h3>{{verifyViaCallStatusHeader}}</h3>
+            <i class="phone-icon"></i>
+            <div class="remaining-time-container" ng-hide="callAuthVerifyTimeExpired"><strong>Remaining Time:</strong> <span class="remaining-time"></span></div>
+            <div class="alert-text" ng-show="callAuthVerifyTimeExpired">Failed to verify your number. <br>Please try again later!</div>
+
+            <button class="btn btn-default" data-dismiss="modal" ng-show="callAuthVerifyTimeExpired">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

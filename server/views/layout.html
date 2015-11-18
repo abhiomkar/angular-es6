@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}Angular ES6 Demo{% endblock %}</title>
+	{% block head %}
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<base href="/">
+		<link rel="stylesheet" href="dist/main.css"></link>
+	{% endblock %}
+</head>
+<body class="{% block classes %}{% endblock %}">
+	{% block banner_message %}{% endblock %}
+
+	{% block header %}{% endblock %}
+
+	{% block content %}
+	{% endblock %}
+
+	{% block footer %}
+		<footer>
+			<div class="container">
+				<ul>
+					<li>
+						<a href="/team">About</a>
+					</li>
+					<li>
+						<a href="/help">Help</a>
+					</li>
+					<li>
+						<a href="/contact">Contact</a>
+					</li>
+				</ul>
+
+				<div class="copyright">
+					<div class="subtitle fancy"><span>Copyright 2015 &copy; <strong>Angular ES6 Demo</strong></span></div>
+				</div>
+			</div>
+		</footer>
+	{% endblock %}
+
+	{% block js_scripts %}
+		<script src="dist/main.js"></script>
+
+		{% if env == "production" %}
+			<!-- Google Analytics -->
+			<script>
+		    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		    // Initializing with tracking id
+				ga('create', 'UA-XXXXX-1', 'auto');
+			</script>
+			<!-- End Google Analytics -->
+		{% endif %}
+	{% endblock %}
+</body>
+</html>
