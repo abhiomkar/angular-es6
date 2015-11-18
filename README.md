@@ -30,6 +30,11 @@ Build
     git pull
     npm install && gulp build
 
+Demo
+----
+
+https://angular-es6-demo.herokuapp.com
+
 Set Environment Variables
 -------------------------
 
