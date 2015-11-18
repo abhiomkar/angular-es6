@@ -6,29 +6,29 @@ Install
 
 Download code repository and install all client side (frontend) / server side (node) dependecies
 
-  git clone https://github.com/abhiomkar/angular-es6.git
-  cd angular-es6
-  npm install
+    git clone https://github.com/abhiomkar/angular-es6.git
+    cd angular-es6
+    npm install
 
 Development
 -----------
 
-  gulp
+    gulp
 
 Debug
 -----
 
-	gulp build
-	node-debug server/dist/app.js
+    gulp build
+    node-debug server/dist/app.js
 
-* Debugger (node-inspector) runs at	http://127.0.0.1:8080/?ws=127.0.0.1:8080&port=5858 (wait for the assets to load)
+* Debugger (node-inspector) runs at http://127.0.0.1:8080/?ws=127.0.0.1:8080&port=5858 (wait for the assets to load)
 * App runs at http://localhost:4000
 
 Build
 -----
 
-  git pull
-  npm install && gulp build
+    git pull
+    npm install && gulp build
 
 Set Environment Variables
 -------------------------
