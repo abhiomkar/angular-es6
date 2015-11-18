@@ -73,7 +73,7 @@
     "yargs": "^3.9.0"
   },
   "scripts": {
-    "postinstall": "gulp build",
+    "postinstall": "node node_modules/gulp/bin/gulp build",
     "test": "karma start"
   },
   "keywords": [
