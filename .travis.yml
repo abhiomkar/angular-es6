@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "5.4.0"
+before_script:
+  - npm install -g gulp
+script: 
+  - gulp build
+  - node app.js
